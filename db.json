@@ -1,0 +1,37 @@
+{
+  "notebooks": [
+    {
+      "id": 1,
+      "brand": "Dell",
+      "model": "XPS 13",
+      "price": 1200,
+      "processor": "Intel Core i7",
+      "ram": "16GB",
+      "storage": "512GB SSD",
+      "screenSize": "13.3 inches",
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "brand": "HP",
+      "model": "Spectre x360",
+      "price": 1300,
+      "processor": "Intel Core i5",
+      "ram": "8GB",
+      "storage": "256GB SSD",
+      "screenSize": "15.6 inches",
+      "inStock": true
+    },
+    {
+      "id": 3,
+      "brand": "Lenovo",
+      "model": "ThinkPad X1 Carbon",
+      "price": 1500,
+      "processor": "Intel Core i7",
+      "ram": "16GB",
+      "storage": "1TB SSD",
+      "screenSize": "14 inches",
+      "inStock": false
+    }
+  ]
+}

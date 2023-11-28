@@ -1,0 +1,75 @@
+<!-- <p-table
+  [value]="notebooks"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [globalFilterFields]="['brand', 'model']"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ID</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Preço</th>
+      <th>Processador</th>
+      <th>RAM</th>
+      <th>Armazenamento</th>
+    </tr>
+    <tr>
+      <th>
+        <input
+          type="text"
+          pInputText
+          (input)="onFilterChange($event)"
+          placeholder="Busque por um modelo..."
+        />
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-notebook>
+    <tr>
+      <td>{{ notebook.id }}</td>
+      <td>{{ notebook.brand }}</td>
+      <td>{{ notebook.model }}</td>
+      <td>{{ notebook.price }}</td>
+      <td>{{ notebook.processor }}</td>
+      <td>{{ notebook.ram }}</td>
+      <td>{{ notebook.storage }}</td>
+    </tr>
+  </ng-template>
+  <input pInputText type="text" (input)="tb.filter(getValue($event), col.field, 'contains')" placeholder="Search by {{ col.field }}">
+</p-table> -->
+
+<div class="card">
+  <button pButton label="Opções" type="button" (click)="show()"></button>
+  <p-table #tb [columns]="cols" [value]="notebooks" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header" let-columns >
+          <tr>
+              <th *ngFor="let col of columns">
+                  {{ col.header }}
+                  <input pInputText type="text" *ngIf="col.filter && col.field !== 'ram'" (input)="tb.filter(getValue($event), col.field, 'contains')" placeholder="Procure por {{ col.header }}">
+                  <p-dropdown *ngIf="col.field === 'ram'" [options]="ramOptions" [(ngModel)]="selectedRam" (onChange)="tb.filter($event.value, col.field, 'equals')" placeholder="Selecione RAM" [showClear]="true"></p-dropdown>
+              </th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+              <td *ngFor="let col of columns">
+                  {{ rowData[col.field] }}
+              </td>
+              <td *ngFor="let col of columns">
+                <!--<button pButton label="Opções" type="button" (click)="showDialog(rowData.id)"></button>-->
+                <button pButton label="Opções" type="button" (click)="show()"></button>
+                <p-button label="Teste" [raised]="true" severity="success"></p-button>
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
+<!--<p-dialog [(visible)]="visible" [modal]="true" [style]="{width: '50vw', height: '20vw', minWidth: '20em'}" [draggable]="false" [resizable]="false" [contentStyle]="{'overflow':'auto'}">
+  <ng-template pTemplate="header">
+    <div class="modal-header d-flex justify-content-between">
+      <h4 class="modal-title">Opções</h4>
+      <button pButton type="text" label="SSH" style="position: absolute; right: 70px;"></button>
+    </div>
+  </ng-template>
+  <app-opcoes-botao [id]="selectedId"></app-opcoes-botao>
+</p-dialog>-->
